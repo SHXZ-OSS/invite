@@ -23,7 +23,24 @@ export async function POST(request: NextRequest) {
    );
   }
 
-  const { username } = validation.data;
+  const { username, password } = validation.data;
+
+  // Check password if PASSWORD environment variable is set
+  const requiredPassword = process.env.PASSWORD;
+  if (requiredPassword && password !== requiredPassword) {
+   return new NextResponse(
+    JSON.stringify({
+     error: true,
+     message: "Invalid password!",
+    }),
+    {
+     status: 401,
+     headers: {
+      "Content-Type": "application/json",
+     },
+    }
+   );
+  }
 
   const client = new Octokit({
    auth: process.env.GITHUB_TOKEN,
