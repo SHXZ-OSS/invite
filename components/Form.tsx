@@ -31,7 +31,7 @@ export function Form() {
   const validation = githubUsernameSchema.safeParse({ username: input });
   if (!validation.success) {
    setLoading(false);
-   toast.error(validation.error.errors[0].message, { id: loadingToast });
+   toast.error(validation.error.issues[0].message, { id: loadingToast });
    return;
   }
 
