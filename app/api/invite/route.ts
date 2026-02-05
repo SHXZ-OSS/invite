@@ -45,13 +45,27 @@ export async function POST(request: NextRequest) {
    }
    
    // Use timing-safe comparison to prevent timing attacks
-   const passwordBuffer = Buffer.from(password);
-   const requiredPasswordBuffer = Buffer.from(requiredPassword);
-   
-   if (
-    passwordBuffer.length !== requiredPasswordBuffer.length ||
-    !timingSafeEqual(passwordBuffer, requiredPasswordBuffer)
-   ) {
+   try {
+    const passwordBuffer = Buffer.from(password);
+    const requiredPasswordBuffer = Buffer.from(requiredPassword);
+    
+    // timingSafeEqual throws if lengths are different, which is constant-time
+    if (!timingSafeEqual(passwordBuffer, requiredPasswordBuffer)) {
+     return new NextResponse(
+      JSON.stringify({
+       error: true,
+       message: "Invalid password!",
+      }),
+      {
+       status: 401,
+       headers: {
+        "Content-Type": "application/json",
+       },
+      }
+     );
+    }
+   } catch {
+    // Catch length mismatch errors from timingSafeEqual
     return new NextResponse(
      JSON.stringify({
       error: true,
