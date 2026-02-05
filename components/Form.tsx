@@ -53,6 +53,10 @@ export function Form() {
 
    if (res.status === 200) {
     toast.success("Invite sent! Check your email.", { id: loadingToast });
+    // Clear form after successful submission
+    setInput("");
+    setPassword("");
+    setIsInvalid(false);
    } else {
     const { message } = await res.json();
     toast.error(message.replaceAll("Invitee", "User"), { id: loadingToast });
