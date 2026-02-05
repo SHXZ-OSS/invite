@@ -2,19 +2,19 @@ import { Form } from "components/Form";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
- title: "Join us",
+ title: "加入我们",
 };
 
 export default function App() {
  return (
   <div className="relative w-full px-6">
    <div className="z-20 flex w-full flex-col">
-    <span className="mx-auto mb-3 rounded-full border border-white/20 bg-white/10 px-6 py-1 font-medium text-white backdrop-blur-xs">From Vision to Reality:</span>
-    <h1 className="text-center text-5xl leading-tight font-extrabold tracking-tight text-white">Building the future of the Web</h1>
+    <span className="mx-auto mb-3 rounded-full border border-white/20 bg-white/10 px-6 py-1 font-medium text-white backdrop-blur-xs">上海市行知中学</span>
+    <h1 className="text-center text-5xl leading-tight font-extrabold tracking-tight text-white">加入 OSS HUB</h1>
     <p className="pt-3 text-center text-2xl text-white/70">
-     Join the community of developers
+     学生会信息部代码托管组织
      <br />
-     who are building the future of the web.
+     欢迎贡献代码，共建开源社区
     </p>
     <div className="mt-6">
      <Form />

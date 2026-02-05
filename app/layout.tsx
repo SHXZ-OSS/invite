@@ -9,17 +9,17 @@ import "./globals.css";
 export const metadata: Metadata = {
  metadataBase: new URL("https://just-that.vercel.app"),
  title: {
-  default: "Just.it",
-  template: "%s | Just.it",
+  default: "上海市行知中学 OSS HUB",
+  template: "%s | 上海市行知中学 OSS HUB",
  },
  description:
-  "We are building open source projects with strong focus on user privacy. Our goal is to make the Internet more secure. In our applications everything is encrypted - in fact even we don't have access to users' data.",
+  "上海市行知中学学生会信息部代码托管组织。我们致力于开源项目开发，欢迎贡献代码，共建开源社区。",
  openGraph: {
-  title: "Just.it",
+  title: "上海市行知中学 OSS HUB",
   description:
-   "We are building open source projects with strong focus on user privacy. Our goal is to make the Internet more secure. In our applications everything is encrypted - in fact even we don't have access to users' data.",
+   "上海市行知中学学生会信息部代码托管组织。我们致力于开源项目开发，欢迎贡献代码，共建开源社区。",
   url: "/",
-  siteName: "Just.it",
+  siteName: "上海市行知中学 OSS HUB",
   images: [
    {
     url: "/images/og.png",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     height: 942,
    },
   ],
-  locale: "en_US",
+  locale: "zh_CN",
   type: "website",
  },
  robots: {
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
  },
  twitter: {
-  title: "Just.it",
+  title: "上海市行知中学 OSS HUB",
   card: "summary_large_image",
  },
  icons: {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }) {
  return (
-  <html lang="en">
+  <html lang="zh-CN">
    <body className={GeistSans.className}>
     <main className="bg-hero flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#070706] py-2 antialiased duration-200">
      {children}
