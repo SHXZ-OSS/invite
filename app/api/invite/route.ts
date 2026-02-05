@@ -1,6 +1,7 @@
 import { Octokit } from "@octokit/rest";
 import { NextRequest, NextResponse } from "next/server";
 import { githubUsernameSchema } from "@/lib/validator";
+import { timingSafeEqual } from "crypto";
 
 export async function POST(request: NextRequest) {
  try {
@@ -27,19 +28,43 @@ export async function POST(request: NextRequest) {
 
   // Check password if PASSWORD environment variable is set
   const requiredPassword = process.env.PASSWORD;
-  if (requiredPassword && password !== requiredPassword) {
-   return new NextResponse(
-    JSON.stringify({
-     error: true,
-     message: "Invalid password!",
-    }),
-    {
-     status: 401,
-     headers: {
-      "Content-Type": "application/json",
-     },
-    }
-   );
+  if (requiredPassword) {
+   if (!password) {
+    return new NextResponse(
+     JSON.stringify({
+      error: true,
+      message: "Password is required!",
+     }),
+     {
+      status: 401,
+      headers: {
+       "Content-Type": "application/json",
+      },
+     }
+    );
+   }
+   
+   // Use timing-safe comparison to prevent timing attacks
+   const passwordBuffer = Buffer.from(password);
+   const requiredPasswordBuffer = Buffer.from(requiredPassword);
+   
+   if (
+    passwordBuffer.length !== requiredPasswordBuffer.length ||
+    !timingSafeEqual(passwordBuffer, requiredPasswordBuffer)
+   ) {
+    return new NextResponse(
+     JSON.stringify({
+      error: true,
+      message: "Invalid password!",
+     }),
+     {
+      status: 401,
+      headers: {
+       "Content-Type": "application/json",
+      },
+     }
+    );
+   }
   }
 
   const client = new Octokit({

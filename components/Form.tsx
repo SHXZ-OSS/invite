@@ -14,7 +14,8 @@ export function Form() {
   const { value } = e.target;
   setInput(value);
 
-  const validation = githubUsernameSchema.safeParse({ username: value, password });
+  // Only validate username for UI feedback
+  const validation = githubUsernameSchema.shape.username.safeParse(value);
   setIsInvalid(!validation.success);
  };
 
