@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     height: 942,
    },
   ],
-  locale: "zh_CN",
+  locale: "zh-CN",
   type: "website",
  },
  robots: {
