@@ -35,3 +35,4 @@ next-env.d.ts
 # Environment variables
 .env.*
 !.env.example
+package-lock.json
